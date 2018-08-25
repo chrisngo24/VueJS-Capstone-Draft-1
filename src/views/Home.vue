@@ -11,8 +11,8 @@
         <h6> [ Dictionary ] . [ Thesaurus ] . [ Urban Dictionary ] . [ Origin & History ] . [ Create ] . [ Blog ] . [ Vote/Discuss ] </h6>
       </div>
         <div class="search-bar">
-          <h3>search <input type="text" v-model="search"></h3>
-          <button v-on:click="searchEntry()">Convey It!</button>
+          <h3><input v-on:keyup.enter="submit" class="search-box" type="text" v-model="search"></h3>
+          <button class="search-button" v-on:click="searchEntry()">Convey</button>
         </div>
 
 
@@ -21,7 +21,7 @@
         <p v-if="words.length === 0">The word you are looking for does not yet exist with Convey.</p>
         <ul>
           <li v-for="word in words">
-            <p class="word"><h3>{{ word.word }}</h3></p>
+            <p class="word"><h3>Word: {{ word.word }}</h3></p>
             <p class="definition">Definition: <h5>{{ word.definition }}</h5></p>
             <p class="user-name">By User: <h6>{{ word.user_id }}</h6></p>
           </li>
@@ -47,12 +47,33 @@
   font-size: 20;
   color: black;
   text-align: center;
-  padding-bottom: 60px;
+  padding-bottom: 30px;
 }
 .search-bar {
   color: black;
   text-align: center;
   padding-top: 20px;
+}
+.search-box {
+  height: 39px;
+  width: 37%;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 17px;
+}
+.search-button {
+  height: 35px;
+  width: 10%;
+  background-color: black;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 17px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 5px 0 rgba(0,0,0,0.19);
+}
+.search-button:hover {
+  background-color: white;
+  color: black;
 }
 .results-body {
   text-align: left;
@@ -103,7 +124,10 @@ export default {
           this.words = response.data;
         }.bind(this)
       );
-    }
+    },
+    // press enter to submit: function() {
+
+    // }
   },
   computed: {}
 };
