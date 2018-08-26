@@ -8,13 +8,21 @@
       <h6>It's time we have better conversations.</h6>
     </div>
       <div class="pages-links">
-        <h6> [ Dictionary ] . [ Thesaurus ] . [ Urban Dictionary ] . [ Origin & History ] . [ Create ] . [ Blog ] . [ Vote/Discuss ] </h6>
+        <button type="button" class="btn-pages-links-tab">Dictionary</button>
+        <button type="button" class="btn-pages-links-tab">Thesaurus</button>
+        <button type="button" class="btn-pages-links-tab">Urban Dictionary</button>
+        <button type="button" class="btn-pages-links-tab">History</button>
+        <button type="button" class="btn-pages-links-tab">Create</button>
+        <button type="button" class="btn-pages-links-tab">Discuss</button>
+        <button type="button" class="btn-pages-links-tab">Vote</button>
       </div>
-        <div class="search-bar">
-          <h3><input v-on:keyup.enter="submit" class="search-box" type="text" v-model="search"></h3>
-          <button class="search-button" v-on:click="searchEntry()">Convey</button>
-        </div>
-
+        <form class="form-center">
+          <!-- <h3><input v-on:keyup.enter="submit" class="search-box" type="text" v-model="search"></h3> -->
+          <input class="search-form" type="search" placeholder="   Search" aria-label="Search" v-model="search">
+        </form>
+        <form>
+          <button class="search-button" v-on:click="searchEntry()">Search</button>
+        </form>
 
     <div class="results-body">
       <h5>Your search results: {{ search }}</h5> 
@@ -41,39 +49,53 @@
   font-variant: small-caps;
   color: black;
   text-align: center;
-  padding-bottom: 40px;
+  padding-bottom: 15px;
 }
 .pages-links {
   font-size: 20;
   color: black;
   text-align: center;
-  padding-bottom: 30px;
+  padding-bottom: 20px;
 }
-.search-bar {
+.btn-pages-links-tab {
+  border-top: 0px white;
+  border-right: 1px solid black;
+  border-bottom: 0px white;
+  border-left: 1px solid black;
+  background-color: white;
+  border-radius: 10px;
+}
+.form-inline {
   color: black;
   text-align: center;
   padding-top: 20px;
 }
-.search-box {
+.search-form {
   height: 39px;
-  width: 37%;
-  border-style: solid;
-  border-width: 1px;
-  border-radius: 17px;
+  width: 38%;
+  border-top: 0px white;
+  border-right: 0px white;
+  border-bottom: 1.5px solid black;
+  border-left: 0px white;
+  background-color: white;
+  border-radius: 9px;
 }
 .search-button {
-  height: 35px;
-  width: 10%;
-  background-color: black;
-  color: white;
+  height: 39px;
+  width: 9%;
+  background-color: white;
+  color: black;
   font-size: 20px;
   font-weight: bold;
   border-radius: 17px;
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 5px 0 rgba(0,0,0,0.19);
+  border-style: solid;
+  border-width: 1.5px;
+  border-color: white;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 5px 0 rgba(0, 0, 0, 0.19);
 }
 .search-button:hover {
-  background-color: white;
-  color: black;
+  background-color: black;
+  color: white;
 }
 .results-body {
   text-align: left;
@@ -100,7 +122,6 @@
 
 <script>
 var axios = require("axios");
-
 export default {
   data: function() {
     return {
@@ -118,15 +139,14 @@ export default {
         search: this.search
       };
       console.log(params);
-      axios.get("http://localhost:3000/api/words", {params: params}).then(
+      axios.get("http://localhost:3000/api/words", { params: params }).then(
         function(response) {
           console.table(response.data);
           this.words = response.data;
         }.bind(this)
       );
-    },
+    }
     // press enter to submit: function() {
-
     // }
   },
   computed: {}
