@@ -55,7 +55,7 @@
   font-size: 20;
   color: black;
   text-align: center;
-  padding-bottom: 20px;
+  padding-bottom: 70px;
 }
 .btn-pages-links-tab {
   border-top: 0px white;
@@ -63,12 +63,11 @@
   border-bottom: 0px white;
   border-left: 1px solid black;
   background-color: white;
-  border-radius: 10px;
 }
 .form-inline {
   color: black;
   text-align: center;
-  padding-top: 20px;
+  padding-top: 30px;
 }
 .search-form {
   height: 39px;
@@ -79,8 +78,10 @@
   border-left: 0px white;
   background-color: white;
   border-radius: 9px;
+  margin-bottom: 4px;
 }
 .search-button {
+  padding-top: 3px;
   height: 39px;
   width: 9%;
   background-color: white;
