@@ -7,6 +7,7 @@
     <div class="subtitle">
       <h6>It's time we have better conversations.</h6>
     </div>
+
       <div class="pages-links">
         <button type="button" class="btn-pages-links-tab">Dictionary</button>
         <button type="button" class="btn-pages-links-tab">Thesaurus</button>
@@ -17,16 +18,13 @@
         <button type="button" class="btn-pages-links-tab">Vote</button>
       </div>
         <form class="form-center">
-          <!-- <h3><input v-on:keyup.enter="submit" class="search-box" type="text" v-model="search"></h3> -->
           <input class="search-form" type="search" placeholder="   Search" aria-label="Search" v-model="search">
-        </form>
-        <form>
-          <button class="search-button" v-on:click="searchEntry()">Search</button>
+          <button class="search-button" v-on:click="searchEntry()" type="submit">Search</button>
         </form>
 
     <div class="results-body">
       <h5>Your search results: {{ search }}</h5> 
-        <p v-if="words.length === 0">The word you are looking for does not yet exist with Convey.</p>
+        <p v-if="words.length === 0">The word you are looking for does not yet exist in the Convey library. If you can define it, consider adding it to the library.</p>
         <ul>
           <li v-for="word in words">
             <p class="word"><h3>Word: {{ word.word }}</h3></p>
@@ -77,7 +75,7 @@
   border-bottom: 1.5px solid black;
   border-left: 0px white;
   background-color: white;
-  border-radius: 9px;
+  border-radius: 11px;
   margin-bottom: 4px;
 }
 .search-button {
@@ -88,11 +86,13 @@
   color: black;
   font-size: 20px;
   font-weight: bold;
-  border-radius: 17px;
+  border-top: 1.5px solid black;
+  border-right: 0px white;
+  border-bottom: 0px white;
+  border-left: 0px white;
   border-style: solid;
-  border-width: 1.5px;
-  border-color: white;
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 5px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 11px;
+  /*box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 5px 0 rgba(0, 0, 0, 0.19);*/
 }
 .search-button:hover {
   background-color: black;
@@ -123,6 +123,7 @@
 
 <script>
 var axios = require("axios");
+
 export default {
   data: function() {
     return {
