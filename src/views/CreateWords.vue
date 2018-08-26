@@ -7,7 +7,9 @@
         Context Example: <input class="word-example" type="text" placeholder=" use it in a sentence" aria-label="Example" v-model="newWord.example">
         <!-- Tag It: <input class="word-tag" type="text" placeholder="   Add Tags of Related or Similar Words So Others Are Able to Find Your Addition to the Library!" aria-label="Tag" v-model="word-tag"> -->
         <h6>Please review thoroughly before making your submission.</h6>
-        <button v-on:click="createNewWord()" type="submit">Submit My Word!</button>
+        <router-link :to="{name: 'home'}">
+           <button v-on:click="createNewWord()" type="submit">Submit My Word!</button>
+        </router-link>
       </form>
 
     <h3>You Created: {{ createdWord.word }}</h3>

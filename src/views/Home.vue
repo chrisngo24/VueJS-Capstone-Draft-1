@@ -11,10 +11,9 @@
       <div class="pages-links">
         <button type="button" class="btn-pages-links-tab">Dictionary</button>
         <button type="button" class="btn-pages-links-tab">Thesaurus</button>
-        <button type="button" class="btn-pages-links-tab">Urban Dictionary</button>
-        <button type="button" class="btn-pages-links-tab">History</button>
-        <button type="button" class="btn-pages-links-tab">Create</button>
-        <button type="button" class="btn-pages-links-tab">Discuss</button>
+        <button type="button" class="btn-nav"><a href="https://www.urbandictionary.com/" target="_blank">Urban Dictionary</a></button>
+        <button type="button" class="btn-pages-links-tab">Explore</button>
+        <button type="button" class="btn-nav"><a href="/#/createWords">Create</a></button><button type="button" class="btn-pages-links-tab">Discuss</button>
         <button type="button" class="btn-pages-links-tab">Vote</button>
       </div>
         <form class="form-center">
@@ -25,6 +24,15 @@
     <div class="results-body">
       <h5>Your search results: {{ search }}</h5> 
         <p v-if="words.length === 0">The word you are looking for does not yet exist in the Convey library. If you can define it, consider adding it to the library.</p>
+        <h4>WORDNIK WORDS</h4>
+        <ul>
+          <li v-for="word in wordnikWords">
+            <p class="word"><h3>Word: {{ word.word }}</h3></p>
+            <p class="definition">Definition: <h5>{{ word.definition }}</h5></p>
+            <p class="user-name">By User: <h6>{{ word.user_id }}</h6></p>
+          </li>
+        </ul> 
+        <h4>CUSTOM WORDS</h4>
         <ul>
           <li v-for="word in words">
             <p class="word"><h3>Word: {{ word.word }}</h3></p>
@@ -128,6 +136,7 @@ export default {
   data: function() {
     return {
       words: [{ id: "", word: "", definition: "", user_id: "" }],
+      wordnikWords: [],
       search: "",
       message: "Chris was here"
     };
@@ -144,7 +153,8 @@ export default {
       axios.get("http://localhost:3000/api/words", { params: params }).then(
         function(response) {
           console.table(response.data);
-          this.words = response.data;
+          this.words = response.data.custom_words;
+          this.wordnikWords = response.data.wordnik_words;
         }.bind(this)
       );
     }

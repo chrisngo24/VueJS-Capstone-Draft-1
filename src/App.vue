@@ -7,6 +7,7 @@
       </div>
       <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
         <div class="btn-group mr-2" role="group" aria-label="First group">
+          <button type="button" class="btn-nav"><a href="/#/">Home</a></button>
           <button type="button" class="btn-nav"><a href="/#/about">About</a></button>
           <button type="button" class="btn-nav">Account</button>
           <button type="button" class="btn-nav"><a href="/#/signup">Signup</a></button>
