@@ -22,21 +22,21 @@
         </form>
 
     <div class="results-body">
-      <h5>Your search results: {{ search }}</h5> 
+      <h4>Your search results: {{ search }}</h4> 
         <p v-if="words.length === 0">The word you are looking for does not yet exist in the Convey library. If you can define it, consider adding it to the library.</p>
-        <h4>WORDNIK WORDS</h4>
-        <ul>
-          <li v-for="word in wordnikWords">
-            <p class="word"><h3>Word: {{ word.word }}</h3></p>
-            <p class="definition">Definition: <h5>{{ word.definition }}</h5></p>
-            <p class="user-name">By User: <h6>{{ word.user_id }}</h6></p>
-          </li>
-        </ul> 
-        <h4>CUSTOM WORDS</h4>
+        
+        <h4>As defined by Wordnik</h4>
+        <div v-for="wordnikWord in trimWords(wordnikWords)">
+          <p class="word"><h6>Word: {{ wordnikWord.word }}</h6></p>
+          <p class="word"><h6>Definition: {{ wordnikWord.text }}</h6></p>
+          <!-- <p class="definition">Definition: <h6>{{ text }}</h6></p> -->
+        </div>
+
+        <h4>As defined by the Community</h4>
         <ul>
           <li v-for="word in words">
-            <p class="word"><h3>Word: {{ word.word }}</h3></p>
-            <p class="definition">Definition: <h5>{{ word.definition }}</h5></p>
+            <p class="word"><h6>Word: {{ word.word }}</h6></p>
+            <p class="definition">Definition: <h6>{{ word.definition }}</h6></p>
             <p class="user-name">By User: <h6>{{ word.user_id }}</h6></p>
           </li>
         </ul> 
@@ -138,7 +138,7 @@ export default {
       words: [{ id: "", word: "", definition: "", user_id: "" }],
       wordnikWords: [],
       search: "",
-      message: "Chris was here"
+      i: 0
     };
   },
   created: function() {
@@ -154,12 +154,21 @@ export default {
         function(response) {
           console.table(response.data);
           this.words = response.data.custom_words;
-          this.wordnikWords = response.data.wordnik_words;
         }.bind(this)
       );
+      axios.get("http://localhost:3000/api/wordnik", { params: params }).then(
+        function(response) {
+          // The response.data is an array of hashes
+          console.log("wordnik", response.data);
+          this.wordnikWords = response.data;
+        }.bind(this)
+      );
+    },
+
+    trimWords: function(wordnikWords) {
+      console.log(wordnikWords);
+      return wordnikWords.slice(0, 1);
     }
-    // press enter to submit: function() {
-    // }
   },
   computed: {}
 };
