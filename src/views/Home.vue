@@ -42,17 +42,33 @@
           <li v-for="word in words">
             <p class="word"><h6>{{ word.word }}</h6></p>
             <p class="definition">Definition: {{ word.definition }}</p>
+            <p class="definition">User Definitions:
+              <ul>
+                <li v-for="definition in word.definitions">
+                  <p>{{ definition.definition }}</p>
+                </li>
+              </ul>
+            </p>
             <p class="example">Example: {{ word.example }}</p>
             <p class="user-name">Conveyed By: {{ word.user_id }}</p>
-            <div>
+            
+            <button v-on:click="showComments(word)">Show Comments</button>
+            <button>Add New Definition</button>
 
+            <div>
               <form>
-                <input type="text" v-model="word.comment">
-                <button class="search-button" v-on:click="createComment(word)" type="submit">Submit</button>
+                <input type="text" v-model="word.newDefinition" placeholder="enter definition">
+                <button class="search-button" v-on:click="createDefinition(word)" type="submit">Submit</button>
               </form>
             </div>
 
-            <div>
+            <div v-if="word.showComments">
+              <form>
+                <input type="text" v-model="word.comment" placeholder="enter comment">
+                <button class="search-button" v-on:click="createComment(word)" type="submit">Submit</button>
+              </form>
+
+
               <ul>
                 <li v-for="comment in word.comments">
                   <p>{{ comment.text }}</p>
@@ -160,7 +176,6 @@ export default {
       words: [],
       wordnikWords: [],
       search: "",
-      comment: {},
       i: 0
     };
   },
@@ -177,7 +192,7 @@ export default {
         function(response) {
           console.table(response.data);
           this.words = response.data.custom_words;
-          console.log('my words', this.words)
+          console.log("my words", this.words);
         }.bind(this)
       );
       axios.get("http://localhost:3000/api/wordnik", { params: params }).then(
@@ -190,19 +205,38 @@ export default {
     },
 
     trimWords: function(wordnikWords) {
-      wordnikWords.slice(0, 3);
+      return wordnikWords.slice(0, 3);
     },
     createComment: function(word) {
       var params = {
         text: word.comment,
         word_id: word.id
       };
-      axios.post("http://localhost:3000/api/comments", params).then(
-        function(response) {
-          var newComment = response.data
+      axios
+        .post("http://localhost:3000/api/comments", params)
+        .then(function(response) {
+          var newComment = response.data;
           console.log(newComment);
-          word.comments.push(newComment)
+          word.comments.push(newComment);
           word.comment = "";
+        });
+    },
+    showComments: function(word) {
+      word.showComments = !word.showComments;
+      console.log(word.showComments, this.words);
+    },
+    createDefinition: function(word) {
+      var params = {
+        definition: word.newDefinition,
+        word_id: word.id
+      };
+      axios
+        .post("http://localhost:3000/api/definitions", params)
+        .then(function(response) {
+          var newDefinition = response.data;
+          console.log(newDefinition);
+          word.definitions.push(newDefinition);
+          word.newDefinition = "";
         });
     }
   },
