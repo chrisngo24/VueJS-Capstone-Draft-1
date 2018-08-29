@@ -11,35 +11,56 @@
       <div class="pages-links">
         <button type="button" class="btn-pages-links-tab">Dictionary</button>
         <button type="button" class="btn-pages-links-tab">Thesaurus</button>
-        <button type="button" class="btn-nav"><a href="https://www.urbandictionary.com/" target="_blank">Urban Dictionary</a></button>
+        <button type="button" class="btn-nav"><a href="/#/createWords">CREATE</a></button><button type="button" class="btn-pages-links-tab">Discuss</button>
         <button type="button" class="btn-pages-links-tab">Explore</button>
-        <button type="button" class="btn-nav"><a href="/#/createWords">Create</a></button><button type="button" class="btn-pages-links-tab">Discuss</button>
         <button type="button" class="btn-pages-links-tab">Vote</button>
       </div>
-        <form class="form-center">
-          <input class="search-form" type="search" placeholder="   Search" aria-label="Search" v-model="search">
-          <button class="search-button" v-on:click="searchEntry()" type="submit">Search</button>
-        </form>
-
+      <form class="form-center">
+        <input class="search-form" type="search" placeholder="   Search" aria-label="Search" v-model="search">
+        <button class="search-button" v-on:click="searchEntry()" type="submit">Search</button>
+      </form>
     <div class="results-body">
-      <h4>Your search results: {{ search }}</h4> 
-        <p v-if="words.length === 0">The word you are looking for does not yet exist in the Convey library. If you can define it, consider adding it to the library.</p>
-        
-        <h4>As defined by Wordnik</h4>
-        <div v-for="wordnikWord in trimWords(wordnikWords)">
-          <p class="word"><h6>Word: {{ wordnikWord.word }}</h6></p>
-          <p class="word"><h6>Definition: {{ wordnikWord.text }}</h6></p>
-          <!-- <p class="definition">Definition: <h6>{{ text }}</h6></p> -->
-        </div>
+      <h4>Results for: "{{ search }}"</h4>
 
-        <h4>As defined by the Community</h4>
-        <ul>
+        <hr>
+
+        <h4>By Wordnik</h4>
+        <div v-for="wordnikWord in trimWords(wordnikWords)">
+          <ol>
+            <li>
+              <p class="word"><h6>Word: {{ wordnikWord.word }}</h6></p>
+              <p class="word"><h6>Definition: {{ wordnikWord.text }}</h6></p>
+            </li>
+          </ol>
+        </div>
+        
+        <hr>
+
+        <h4>By the Community</h4>
+        <p v-if="words.length === 0">The word you are looking for does not yet exist in the Convey library. If you can define it, consider adding it to the library.</p>
+        <ol>
           <li v-for="word in words">
-            <p class="word"><h6>Word: {{ word.word }}</h6></p>
-            <p class="definition">Definition: <h6>{{ word.definition }}</h6></p>
-            <p class="user-name">By User: <h6>{{ word.user_id }}</h6></p>
+            <p class="word"><h6>{{ word.word }}</h6></p>
+            <p class="definition">Definition: {{ word.definition }}</p>
+            <p class="example">Example: {{ word.example }}</p>
+            <p class="user-name">Conveyed By: {{ word.user_id }}</p>
+            <div>
+
+              <form>
+                <input type="text" v-model="word.comment">
+                <button class="search-button" v-on:click="createComment(word)" type="submit">Submit</button>
+              </form>
+            </div>
+
+            <div>
+              <ul>
+                <li v-for="comment in word.comments">
+                  <p>{{ comment.text }}</p>
+                </li>
+              </ul>
+            </div>
           </li>
-        </ul> 
+        </ol> 
     </div> 
   </div>
 </template>
@@ -115,6 +136,7 @@
 }
 .word {
   font-weight: bold;
+  font-style: italic;
   font-size: 22px;
   padding-top: 30px;
   padding-left: 7px;
@@ -135,9 +157,10 @@ var axios = require("axios");
 export default {
   data: function() {
     return {
-      words: [{ id: "", word: "", definition: "", user_id: "" }],
+      words: [],
       wordnikWords: [],
       search: "",
+      comment: {},
       i: 0
     };
   },
@@ -154,6 +177,7 @@ export default {
         function(response) {
           console.table(response.data);
           this.words = response.data.custom_words;
+          console.log('my words', this.words)
         }.bind(this)
       );
       axios.get("http://localhost:3000/api/wordnik", { params: params }).then(
@@ -166,8 +190,20 @@ export default {
     },
 
     trimWords: function(wordnikWords) {
-      console.log(wordnikWords);
-      return wordnikWords.slice(0, 1);
+      wordnikWords.slice(0, 3);
+    },
+    createComment: function(word) {
+      var params = {
+        text: word.comment,
+        word_id: word.id
+      };
+      axios.post("http://localhost:3000/api/comments", params).then(
+        function(response) {
+          var newComment = response.data
+          console.log(newComment);
+          word.comments.push(newComment)
+          word.comment = "";
+        });
     }
   },
   computed: {}
