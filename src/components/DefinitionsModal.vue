@@ -18,9 +18,16 @@
           <div class="modal-body">
             body: {{ modalId }}
           </div>
+         
+          <div>
+          <form>
+            <input type="text" v-model="word.newDefinition" placeholder="enter definition">
+            <button class="search-button" v-on:click="createDefinition(word)" type="submit">Submit</button>
+          </form>
+        </div>
+
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
           </div>
         </div>
       </div>
@@ -29,17 +36,36 @@
 </template>
 
 <script>
+var axios = require("axios");
+
 export default {
-  name: 'DefinitionsModal',
+  name: "DefinitionsModal",
   props: {
     wordId: Number,
-    name: String
+    name: String,
+    word: Object
   },
   data: function() {
     return {
-      htmlId: '#' + this.name + '-' + this.wordId,
-      modalId: this.name + '-' + this.wordId
+      htmlId: "#" + this.name + "-" + this.wordId,
+      modalId: this.name + "-" + this.wordId
+    };
+  },
+  methods: {
+    createDefinition: function(word) {
+      var params = {
+        definition: word.newDefinition,
+        word_id: word.id
+      };
+      axios
+        .post("http://localhost:3000/api/definitions", params)
+        .then(function(response) {
+          var newDefinition = response.data;
+          console.log(newDefinition);
+          word.definitions.push(newDefinition);
+          word.newDefinition = "";
+        });
     }
   }
-}
+};
 </script>

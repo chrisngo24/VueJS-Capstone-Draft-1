@@ -40,36 +40,36 @@
 </template>
 
 <script>
-  var axios = require('axios')
+var axios = require("axios");
 
-  export default {
-    name: 'CommentsModal',
-    props: {
-      wordId: Number,
-      name: String,
-      word: Object
-    },
-    data: function() {
-      return {
-        htmlId: '#' + this.name + '-' + this.wordId,
-        modalId: this.name + '-' + this.wordId
-      }
-    },
-    methods: {
-      createComment: function(word) {
-        var params = {
-          text: word.comment,
-          word_id: word.id
-        };
-        axios
-          .post("http://localhost:3000/api/comments", params)
-          .then(function(response) {
-            var newComment = response.data;
-            console.log(newComment);
-            word.comments.push(newComment);
-            word.comment = "";
-          });
-      },
+export default {
+  name: "CommentsModal",
+  props: {
+    wordId: Number,
+    name: String,
+    word: Object
+  },
+  data: function() {
+    return {
+      htmlId: "#" + this.name + "-" + this.wordId,
+      modalId: this.name + "-" + this.wordId
+    };
+  },
+  methods: {
+    createComment: function(word) {
+      var params = {
+        text: word.comment,
+        word_id: word.id
+      };
+      axios
+        .post("http://localhost:3000/api/comments", params)
+        .then(function(response) {
+          var newComment = response.data;
+          console.log(newComment);
+          word.comments.push(newComment);
+          word.comment = "";
+        });
     }
   }
+};
 </script>

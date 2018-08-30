@@ -1,7 +1,7 @@
 <!-- PARENT COMPONENT -->
 <template>
   <div id="app">
-     <!-- navbar-->
+     <!-- NAVBAR -->
     <header class="header">
       <nav class="navbar navbar-expand-lg">
         <div class="container"><a href="/#/" class="navbar-brand"><img src="https://d19m59y37dris4.cloudfront.net/jobs/2-0-1/img/logo.png" alt="logo" class="d-none d-lg-block"><img src="https://d19m59y37dris4.cloudfront.net/jobs/2-0-1/img/logo-small.png" alt="logo" class="d-block d-lg-none"><span class="sr-only">Go to homepage</span></a>
