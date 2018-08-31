@@ -4,11 +4,11 @@
       <form>
         New Word: <input class="word-name" type="text" placeholder=" word name" aria-label="Word" v-model="newWord.word">
         Definition: <input class="word-definition" type="text" placeholder=" what does it mean?" aria-label="Define" v-model="newWord.definition">
-        Context Example: <input class="word-example" type="text" placeholder=" use it in a sentence" aria-label="Example" v-model="newWord.example">
-        <!-- Tag It: <input class="word-tag" type="text" placeholder="   Add Tags of Related or Similar Words So Others Are Able to Find Your Addition to the Library!" aria-label="Tag" v-model="word-tag"> -->
+        Context Example: <input class="word-example" type="text" placeholder=" 'Use it in a sentence.'" aria-label="Example" v-model="newWord.example">
+        Tag It: <input class="word-tag" type="text" placeholder=" coding, student, etc." aria-label="Tag" v-model="newWord.wordtag">
         <h6>Please review thoroughly before making your submission.</h6>
         <router-link :to="{name: 'home'}">
-           <button v-on:click="createNewWord()" type="submit">Submit My Word!</button>
+           <button v-on:click="createNewWord()" type="submit">Submit My Word</button>
         </router-link>
       </form>
 
@@ -29,7 +29,7 @@ import axios from "axios";
 export default {
   data: function() {
     return {
-      newWord: { word: "", definition: "", example: "" },
+      newWord: { word: "", definition: "", example: "", wordtag: "" },
       createdWord: {}
     };
   },
@@ -41,7 +41,8 @@ export default {
       var params = {
         word: this.newWord.word,
         definition: this.newWord.definition,
-        example: this.newWord.example
+        example: this.newWord.example,
+        tags: this.newWord.wordtag.split(", ")
       };
       axios.post("http://localhost:3000/api/words", params).then(
         function(response) {

@@ -15,19 +15,23 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
+
           <div class="modal-body">
             body: {{ modalId }}
             <div>
-              <form>
-                <input type="text" v-model="word.comment" placeholder="enter comment">
-                <button class="search-button" v-on:click="createComment(word)" type="submit">Submit</button>
-              </form>
 
-              <ul>
-                <li v-for="comment in word.comments">
-                  <p>{{ comment.text }}</p>
-                </li>
-              </ul>
+            <!-- New Comment Text Input Form -->
+            <form>
+              <input type="text" v-model="word.comment" placeholder="enter a comment">
+              <button class="search-button" v-on:click="createComment(word)" type="submit">Submit</button>
+            </form>
+            </div>
+
+            <ul>
+              <li v-for="comment in word.comments">
+                <p>{{ comment.text }}</p>
+              </li>
+            </ul>
             </div>
           </div>
           <div class="modal-footer">

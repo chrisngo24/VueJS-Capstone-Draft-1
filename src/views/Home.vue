@@ -42,7 +42,7 @@
           <li v-for="word in words">
             <p class="word"><h6>{{ word.word }}</h6></p>
             <p class="definition">Definition: {{ word.definition }}</p>
-            <p class="definition">User Definitions:
+            <p class="definition">Other User Definitions:
               <ul>
                 <li v-for="definition in word.definitions">
                   <p>{{ definition.definition }}</p>
@@ -51,18 +51,18 @@
             </p>
             <p class="example">Example: {{ word.example }}</p>
             <p class="user-name">Conveyed By: {{ word.user_id }}</p>
-
-            <commentsModal v-bind:wordId="word.id" name="Comments" :word="word"></commentsModal>
+            
+            <p class="tags">Related Words:
+              <ul>
+                <li v-for="tag in word.tags">
+                  <p>{{ tag.name }}</p>
+                </li>
+              </ul>
+            </p>
+            
+            <commentsModal v-bind:wordId="word.id" name="ShowComments" :word="word"></commentsModal> // ASK ABOUT THIS NAME CONNECTION THAT IS MESSING UP THE MODAL BUTTON IF YOU HAVE A SPACE BETWEEN WORDS//
            
             <definitionsModal v-bind:wordId="word.id" name="Definitions" :word="word"></definitionsModal>
-
-       <!--      <div>
-              <form>
-                <input type="text" v-model="word.newDefinition" placeholder="enter definition">
-                <button class="search-button" v-on:click="createDefinition(word)" type="submit">Submit</button>
-              </form>
-            </div>
- -->
   
           </li>
         </ol> 
@@ -71,102 +71,103 @@
 </template>
 
 <style>
-.title {
-  font-size: 45px;
-  font-weight: bold;
-  color: black;
-  text-align: center;
-}
-.subtitle {
-  font-variant: small-caps;
-  color: black;
-  text-align: center;
-  padding-bottom: 15px;
-}
-.pages-links {
-  font-size: 20;
-  color: black;
-  text-align: center;
-  padding-bottom: 70px;
-}
-.btn-pages-links-tab {
-  border-top: 0px white;
-  border-right: 1px solid black;
-  border-bottom: 0px white;
-  border-left: 1px solid black;
-  background-color: white;
-}
-.form-inline {
-  color: black;
-  text-align: center;
-  padding-top: 30px;
-}
-.search-form {
-  height: 39px;
-  width: 38%;
-  border-top: 0px white;
-  border-right: 0px white;
-  border-bottom: 1.5px solid black;
-  border-left: 0px white;
-  background-color: white;
-  border-radius: 11px;
-  margin-bottom: 4px;
-}
-.search-button {
-  padding-top: 3px;
-  height: 39px;
-  width: 9%;
-  background-color: white;
-  color: black;
-  font-size: 20px;
-  font-weight: bold;
-  border-top: 1.5px solid black;
-  border-right: 0px white;
-  border-bottom: 0px white;
-  border-left: 0px white;
-  border-style: solid;
-  border-radius: 11px;
-  /*box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 5px 0 rgba(0, 0, 0, 0.19);*/
-}
-.search-button:hover {
-  background-color: black;
-  color: white;
-}
-.results-body {
-  text-align: left;
-  padding-top: 50px;
-  padding-left: 100px;
-  padding-right: 100px;
-  padding-bottom: 50px;
-}
-.word {
-  font-weight: bold;
-  font-style: italic;
-  font-size: 22px;
-  padding-top: 30px;
-  padding-left: 7px;
-}
-.definition {
-  padding-top: 7px;
-  padding-left: 7px;
-}
-.user-name {
-  padding-top: 7px;
-  padding-left: 7px;
-}
+  .title {
+    font-size: 45px;
+    font-weight: bold;
+    color: black;
+    text-align: center;
+  }
+  .subtitle {
+    font-variant: small-caps;
+    color: black;
+    text-align: center;
+    padding-bottom: 15px;
+  }
+  .pages-links {
+    font-size: 20;
+    color: black;
+    text-align: center;
+    padding-bottom: 70px;
+  }
+  .btn-pages-links-tab {
+    border-top: 0px white;
+    border-right: 1px solid black;
+    border-bottom: 0px white;
+    border-left: 1px solid black;
+    background-color: white;
+  }
+  .form-inline {
+    color: black;
+    text-align: center;
+    padding-top: 30px;
+  }
+  .search-form {
+    height: 39px;
+    width: 38%;
+    border-top: 0px white;
+    border-right: 0px white;
+    border-bottom: 1.5px solid black;
+    border-left: 0px white;
+    background-color: white;
+    border-radius: 11px;
+    margin-bottom: 4px;
+  }
+  .search-button {
+    padding-top: 3px;
+    height: 39px;
+    width: 9%;
+    background-color: white;
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+    border-top: 1.5px solid black;
+    border-right: 0px white;
+    border-bottom: 0px white;
+    border-left: 0px white;
+    border-style: solid;
+    border-radius: 11px;
+    /*box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 5px 0 rgba(0, 0, 0, 0.19);*/
+  }
+  .search-button:hover {
+    background-color: black;
+    color: white;
+  }
+  .results-body {
+    text-align: left;
+    padding-top: 50px;
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-bottom: 50px;
+  }
+  .word {
+    font-weight: bold;
+    font-style: italic;
+    font-size: 22px;
+    padding-top: 30px;
+    padding-left: 7px;
+  }
+  .definition {
+    padding-top: 7px;
+    padding-left: 7px;
+  }
+  .user-name {
+    padding-top: 7px;
+    padding-left: 7px;
+  }
 </style>
 
 <script>
 import CommentsModal from "../components/CommentsModal.vue";
 import DefinitionsModal from "../components/DefinitionsModal.vue";
 var axios = require("axios");
+
 export default {
   data: function() {
     return {
       words: [],
       wordnikWords: [],
       search: "",
-      i: 0
+      i: 0,
     };
   },
   components: {
@@ -186,13 +187,13 @@ export default {
         function(response) {
           console.table(response.data);
           this.words = response.data.custom_words;
-          console.log("my words", this.words);
+          console.log("CONVEY WORDS", this.words);
         }.bind(this)
       );
       axios.get("http://localhost:3000/api/wordnik", { params: params }).then(
         function(response) {
           // The response.data is an array of hashes
-          console.log("wordnik", response.data);
+          console.log("WORDNIK WORDS", response.data);
           this.wordnikWords = response.data;
         }.bind(this)
       );

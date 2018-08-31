@@ -20,11 +20,11 @@
           </div>
          
           <div>
-          <form>
-            <input type="text" v-model="word.newDefinition" placeholder="enter definition">
-            <button class="search-button" v-on:click="createDefinition(word)" type="submit">Submit</button>
-          </form>
-        </div>
+            <form>
+              <input type="text" v-model="word.newDefinition" placeholder="enter a new definition">
+              <button class="search-button" v-on:click="createDefinition(word)" type="submit">Submit</button>
+            </form>
+          </div>
 
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
