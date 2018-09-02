@@ -53,11 +53,9 @@
             <p class="user-name">Conveyed By: {{ word.user_id }}</p>
             
             <p class="tags">Related Words:
-              <ul>
-                <li v-for="tag in word.tags">
-                  <p>{{ tag.name }}</p>
-                </li>
-              </ul>
+                <span v-for="tag in word.tags">
+                  <button v-on:click="searchTag(tag)">{{ tag.name }}</button>
+                </span>
             </p>
             
             <commentsModal v-bind:wordId="word.id" name="ShowComments" :word="word"></commentsModal> // ASK ABOUT THIS NAME CONNECTION THAT IS MESSING UP THE MODAL BUTTON IF YOU HAVE A SPACE BETWEEN WORDS//
@@ -214,6 +212,10 @@ export default {
           word.definitions.push(newDefinition);
           word.newDefinition = "";
         });
+    },
+    searchTag: function(tag) {
+      this.search = tag.name;
+      this.searchEntry();
     }
   },
   computed: {}

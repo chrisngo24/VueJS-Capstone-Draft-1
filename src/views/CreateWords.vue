@@ -34,7 +34,7 @@ export default {
     };
   },
   created: function() {
-    console.log("Your word has been submitted to the Convey library.");
+    console.log("Your word has been added to the Convey library.");
   },
   methods: {
     createNewWord: function() {

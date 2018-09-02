@@ -1,10 +1,10 @@
 <!-- PARENT COMPONENT -->
 <template>
   <div id="app">
-     <!-- NAVBAR -->
+     <!--  -->
     <header class="header">
       <nav class="navbar navbar-expand-lg">
-        <div class="container"><a href="/#/" class="navbar-brand"><img src="https://d19m59y37dris4.cloudfront.net/jobs/2-0-1/img/logo.png" alt="logo" class="d-none d-lg-block"><img src="https://d19m59y37dris4.cloudfront.net/jobs/2-0-1/img/logo-small.png" alt="logo" class="d-block d-lg-none"><span class="sr-only">Go to homepage</span></a>
+        <div class="container"><a href="index.html" class="navbar-brand"><img src="images/conveyNewWhiteBrdr.png" alt="logo" height="65" width="210" class="d-none d-lg-block"><img src="images/conveyNewWhiteBrdr.png" alt="logo" height="65" width="210" class="d-block d-lg-none"><span class="sr-only">Go to homepage</span></a>
           <!-- <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars"></i></button> -->
 
           <div id="navbarSupportedContent" class="collapse navbar-collapse">
@@ -120,5 +120,4 @@
 </template>
 
 <style>
-
 </style>
