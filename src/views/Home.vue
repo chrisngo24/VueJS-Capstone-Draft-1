@@ -1,63 +1,75 @@
 <template>
   <div class="home">
-    <div>
-      <h1 class="title">CONVEY</h1>
-    </div>
- 
-    <div class="subtitle">
-      <h6>It's time we have better conversations.</h6>
-    </div>
+    <!-- SEARCH FORM -->
+    <section class="job-form-section job-form-section--image">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <div class="job-form-box">
+              <h2 class="heading">Find a <span class="accent">word</span> or <span class="accent">phrase</span>.</h2>
+              <form  v-on:submit.prevent="searchEntry()" id="job-main-form" class="job-main-form">
+                <div class="controls">
+                  <div class="row align-items-center">
+                    <div class="col-md-10">
+                      <div class="form-group">
+                        <label for="profession">Convey</label>
+                        <input type="text" id="profession" name="profession" placeholder="Type search here" class="form-control" v-model="search">
+                      </div>
+                    </div>
 
-      <form class="form-center">
-        <input class="search-form" type="search" placeholder="   Search" aria-label="Search" v-model="search">
-        <button class="search-button" v-on:click="searchEntry()" type="submit">Search</button>
-      </form>
-    <div class="results-body">
-      <h4>Results for: "{{ search }}"</h4>
-
-        <hr>
-
-        <h4>By Wordnik</h4>
-        <div v-for="wordnikWord in trimWords(wordnikWords)">
-          <ol>
-            <li>
-              <p class="word"><h6>Word: {{ wordnikWord.word }}</h6></p>
-              <p class="word"><h6>Definition: {{ wordnikWord.text }}</h6></p>
-            </li>
-          </ol>
+                    <div class="col-md-2">
+                      <button class="btn btn-outline-white-primary job-main-form__button" type="submit"><i class="fa fa-search"></i></button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
-        
-        <hr>
-
-        <h4>By the Community</h4>
-        <p v-if="words.length === 0">The word you are looking for does not yet exist in the Convey library. If you can define it, consider adding it to the library.</p>
+      </div>
+    </section>
+    <section>
+      <h4>By Wordnik</h4>
+      <div v-for="wordnikWord in trimWords(wordnikWords)">
         <ol>
-          <li v-for="word in words">
-            <p class="word"><h6>{{ word.word }}</h6></p>
-            <p class="definition">Definition: {{ word.definition }}</p>
-            <p class="definition">Other User Definitions:
-              <ul>
-                <li v-for="definition in word.definitions">
-                  <p>{{ definition.definition }}</p>
-                </li>
-              </ul>
-            </p>
-            <p class="example">Example: {{ word.example }}</p>
-            <p class="user-name">Conveyed By: {{ word.user_id }}</p>
-            
-            <p class="tags">Related Words:
-                <span v-for="tag in word.tags">
-                  <button v-on:click="searchTag(tag)">{{ tag.name }}</button>
-                </span>
-            </p>
-            
-            <commentsModal v-bind:wordId="word.id" name="ShowComments" :word="word"></commentsModal> // ASK ABOUT THIS NAME CONNECTION THAT IS MESSING UP THE MODAL BUTTON IF YOU HAVE A SPACE BETWEEN WORDS//
-           
-            <definitionsModal v-bind:wordId="word.id" name="Definitions" :word="word"></definitionsModal>
-  
+          <li>
+            <p class="word"><h6>Word: {{ wordnikWord.word }}</h6></p>
+            <p class="word"><h6>Definition: {{ wordnikWord.text }}</h6></p>
           </li>
-        </ol> 
-    </div> 
+        </ol>
+      </div>
+        
+      <hr>
+
+      <h4>By the Community</h4>
+      <p v-if="words.length === 0">The word you are looking for does not yet exist in the Convey library. If you can define it, consider adding it to the library.</p>
+      <ol>
+        <li v-for="word in words">
+          <p class="word"><h6>{{ word.word }}</h6></p>
+          <p class="definition">Definition: {{ word.definition }}</p>
+          <p class="definition">Other User Definitions:
+            <ul>
+              <li v-for="definition in word.definitions">
+                <p>{{ definition.definition }}</p>
+              </li>
+            </ul>
+          </p>
+          <p class="example">Example: {{ word.example }}</p>
+          <p class="user-name">Conveyed By: {{ word.user_id }}</p>
+          
+          <p class="tags">Related Words:
+              <span v-for="tag in word.tags">
+                <button v-on:click="searchTag(tag)">{{ tag.name }}</button>
+              </span>
+          </p>
+          
+          <commentsModal v-bind:wordId="word.id" name="ShowComments" :word="word"></commentsModal> // ASK ABOUT THIS NAME CONNECTION THAT IS MESSING UP THE MODAL BUTTON IF YOU HAVE A SPACE BETWEEN WORDS//
+         
+          <definitionsModal v-bind:wordId="word.id" name="Definitions" :word="word"></definitionsModal>
+
+        </li>
+      </ol> 
+    </section>
   </div>
 </template>
 
@@ -117,7 +129,7 @@
   border-left: 0px white;
   border-style: solid;
   border-radius: 11px;
-  /*box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 5px 0 rgba(0, 0, 0, 0.19);*/
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 5px 0 rgba(0, 0, 0, 0.19);
 }
 .search-button:hover {
   background-color: black;
@@ -166,7 +178,11 @@ export default {
     definitionsModal: DefinitionsModal
   },
   created: function() {
-    console.log("Finding your word.");
+    console.log("Finding your word.", this.$route.query);
+    if (this.$route.query.search) {
+      this.search = this.$route.query.search;
+      this.searchEntry();
+    }
   },
   methods: {
     searchEntry: function() {
@@ -188,6 +204,9 @@ export default {
           this.wordnikWords = response.data;
         }.bind(this)
       );
+
+      window.scrollTo(0, 0);
+      
     },
     trimWords: function(wordnikWords) {
       return wordnikWords.slice(0, 3);
