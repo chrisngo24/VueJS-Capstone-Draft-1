@@ -28,48 +28,142 @@
         </div>
       </div>
     </section>
-    <section>
-      <h4>By Wordnik</h4>
-      <div v-for="wordnikWord in trimWords(wordnikWords)">
-        <ol>
-          <li>
-            <p class="word"><h6>Word: {{ wordnikWord.word }}</h6></p>
-            <p class="word"><h6>Definition: {{ wordnikWord.text }}</h6></p>
-          </li>
-        </ol>
+
+    <hr>
+    <!-- SEARCH RESULTS DISPLAY -->
+    <section lass="bg-light-gray">
+      <div class="container">
+        <div class="row">
+          <div id="blog-post" class="col-lg-10 mx-auto">
+            <div id="post-content">
+              <h2>Established Definitions for "{{ search }}"</h2>
+              <h6>[Officially sourced from the Wordnik Dictionary]</h6>
+            
+              <ol>
+                <li v-for="wordnikWord in trimWords(wordnikWords)">
+                  <p>{{ wordnikWord.word }}</p>
+                  <p>Definition: {{ wordnikWord.text }}</p>
+                </li>
+              </ol>
+            
+            <hr>
+
+            <section>
+              <h2>Convey Definitions for "{{ search }}"</h2>
+              <h6>[Created by Convey users]</h6>
+                <p v-if="words.length === 0">The word you are looking for does not yet exist in the Convey library. If you can define it, consider adding it to the library.</p>
+
+                  <ol>
+                    <li v-for="word in words">
+                      <p class="word"><h6>{{ word.word }}</h6></p>
+                      <p class="definition">Definition: {{ word.definition }}</p>
+                      <p class="example">Example: {{ word.example }}</p>
+                      <p class="user-name">Conveyed By: <a href="#">{{ word.user_id }}</a></p>
+                      
+                      <p class="tags">Tags:
+                          <span v-for="tag in word.tags">
+                            <button v-on:click="searchTag(tag)">{{ tag.name }}</button>
+                          </span>
+
+                      <commentsModal v-bind:wordId="word.id" name="Comments" :word="word"></commentsModal>
+                     
+                      <definitionsModal v-bind:wordId="word.id" name="Redefine It" :word="word"></definitionsModal>
+
+                      <h4>DEFINITIONS BY OTHER CONVEY USERS</h4>
+                      <p>
+                        <ol>
+                          <li v-for="definition in word.definitions">
+                            <p><a href="#">{{ word.word }}</a></p>
+                            <p>Definition: {{ definition.definition }}</p>
+                            <p>Example: {{ definition.example }}</p>
+                            <p>Conveyed By: <a href="#">{{ definition.user_id }}</a></p>
+                          </li>
+                        </ol>
+                      </p>
+                      
+                    </li>
+                  </ol>
+            </section>
+              <blockquote class="blockquote">
+                <p><!-- Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus magna. Cras in mi at felis aliquet congue. Ut a est eget ligula molestie gravida. Curabitur massa. Donec eleifend, libero at sagittis mollis, tellus est malesuada tellus, at luctus turpis elit sit amet quam. Vivamus pretium ornare est. --></p>
+              </blockquote>
+              <h3><!-- Header Level 3 --></h3>
+              <p><!-- Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus --></p>
+              <ul>
+                <li><!-- Lorem ipsum dolor sit amet, consectetuer adipiscing elit. --></li>
+                <li><!-- Aliquam tincidunt mauris eu risus. --></li>
+              </ul>
+              <p><!-- <img src="https://d19m59y37dris4.cloudfront.net/jobs/2-0-1/img/blog1.jpg" alt="Example blog post alt" class="img-fluid"> --></p>
+              <p><!-- Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus --></p>
+            </div>
+            <!-- /#post-content-->
+            <!-- <div id="comments"> -->
+              <!-- <h4>2 comments</h4>
+              <div class="row comment">
+                <div class="col-sm-3 col-md-2 text-center-xs">
+                  <p><img src="https://d19m59y37dris4.cloudfront.net/jobs/2-0-1/img/blog-avatar2.jpg" alt="" class="img-fluid rounded-circle"></p>
+                </div>
+                <div class="col-sm-9 col-md-10">
+                  <h5>Julie Alma</h5>
+                  <p class="posted"><i class="fa fa-clock-o"></i> September 23, 2011 at 12:00 am</p>
+                  <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+                  <p class="reply"><a href="#"><i class="fa fa-reply"></i> Reply</a></p>
+                </div>
+              </div> -->
+              <!-- /.comment-->
+              <!-- <div class="row comment last">
+                <div class="col-sm-3 col-md-2 text-center-xs">
+                  <p><img src="https://d19m59y37dris4.cloudfront.net/jobs/2-0-1/img/blog-avatar.jpg" alt="" class="img-fluid rounded-circle"></p>
+                </div>
+                <div class="col-sm-9 col-md-10">
+                  <h5>Louise Armero</h5>
+                  <p class="posted"><i class="fa fa-clock-o"></i> September 23, 2012 at 12:00 am</p>
+                  <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+                  <p class="reply"><a href="#"><i class="fa fa-reply"></i> Reply</a></p>
+                </div> -->
+              <!-- </div> -->
+              <!-- /.comment-->
+            <!-- </div> -->
+            <!-- /#comments-->
+            <!-- <div id="comment-form">
+              <h4>Leave comment</h4>
+              <form>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="name">Name <span class="required">*</span></label>
+                      <input id="name" type="text" class="form-control">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="email">Email <span class="required">*</span></label>
+                      <input id="email" type="text" class="form-control">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label for="comment">Comment <span class="required">*</span></label>
+                      <textarea id="comment" rows="4" class="form-control"></textarea>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12 text-right">
+                    <button type="button" class="btn btn-outline-white-primary"><i class="fa fa-comment-o"></i> Post comment</button>
+                  </div>
+                </div>
+              </form> -->
+            <!-- </div> -->
+          </div>
+        </div>
       </div>
-        
-      <hr>
-
-      <h4>By the Community</h4>
-      <p v-if="words.length === 0">The word you are looking for does not yet exist in the Convey library. If you can define it, consider adding it to the library.</p>
-      <ol>
-        <li v-for="word in words">
-          <p class="word"><h6>{{ word.word }}</h6></p>
-          <p class="definition">Definition: {{ word.definition }}</p>
-          <p class="definition">Other User Definitions:
-            <ul>
-              <li v-for="definition in word.definitions">
-                <p>{{ definition.definition }}</p>
-              </li>
-            </ul>
-          </p>
-          <p class="example">Example: {{ word.example }}</p>
-          <p class="user-name">Conveyed By: {{ word.user_id }}</p>
-          
-          <p class="tags">Related Words:
-              <span v-for="tag in word.tags">
-                <button v-on:click="searchTag(tag)">{{ tag.name }}</button>
-              </span>
-          </p>
-          
-          <commentsModal v-bind:wordId="word.id" name="ShowComments" :word="word"></commentsModal> // ASK ABOUT THIS NAME CONNECTION THAT IS MESSING UP THE MODAL BUTTON IF YOU HAVE A SPACE BETWEEN WORDS//
-         
-          <definitionsModal v-bind:wordId="word.id" name="Definitions" :word="word"></definitionsModal>
-
-        </li>
-      </ol> 
     </section>
+
   </div>
 </template>
 
@@ -206,7 +300,6 @@ export default {
       );
 
       window.scrollTo(0, 0);
-      
     },
     trimWords: function(wordnikWords) {
       return wordnikWords.slice(0, 3);

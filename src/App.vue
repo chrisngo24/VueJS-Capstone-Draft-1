@@ -7,6 +7,13 @@
           <div id="navbarSupportedContent" class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto">
 
+              <li class="nav-item">
+                <form v-on:submit.prevent="searchWord()" class="form-inline my-2 my-lg-0">
+                  <input v-model="inputWord" class="form-control mr-sm-2" type="search" placeholder="Type search here" aria-label="Search a word">
+                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
+                </form>
+              </li>
+
               <li class="nav-item"><a href="/#/createWords" class="nav-link">Create</a></li>
 
               <!-- DROPDOWN MENU -->
@@ -14,12 +21,6 @@
                 <div aria-labelledby="community" class="dropdown-menu"><a href="/#/about" class="dropdown-item">About Us</a><a href="/#/signup" class="dropdown-item">Signup</a><a href="" class="dropdown-item">Explore</a><a href="" class="dropdown-item">Discuss</a><a href="" class="dropdown-item">Vote</a><a href="" class="dropdown-item">Community</a><a href="/#/signup" class="dropdown-item">Blog</a><a href="" class="dropdown-item">Library</a></div>
               </li>
 
-              <li class="nav-item">
-                <form v-on:submit.prevent="searchWord()" class="form-inline my-2 my-lg-0">
-                  <input v-model="inputWord" class="form-control mr-sm-2" type="search" placeholder="Search for word" aria-label="Search a word">
-                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
-                </form>
-              </li>
 
 
 
