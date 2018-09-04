@@ -1383,8 +1383,11 @@ ul.dropdown-menu li a:hover {
 }
 
 .job-form-section.job-form-section--image {
-    background: center center url("/images/convey.png") no-repeat;
-    background-size: cover
+    /*background: center center url("/images/convey.png") no-repeat;*/
+    background-color: white;
+    background-size: cover;
+    padding-top: 10px;
+    padding-bottom: 10px
 }
 
 .job-main-form__button {
@@ -1395,9 +1398,9 @@ ul.dropdown-menu li a:hover {
 
 .job-form-box {
     background-color: rgba(255,255,255,0.8);
-    padding: 40px;
-    margin-top: 40px;
-    margin-bottom: 40px
+    padding: 20px;
+    margin-top: 30px;
+    margin-bottom: 20px
 }
 
 .job-listing {

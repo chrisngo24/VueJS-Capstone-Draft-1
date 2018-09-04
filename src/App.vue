@@ -18,20 +18,47 @@
 
               <!-- DROPDOWN MENU -->
               <li class="nav-item dropdown"><a id="community" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Menu</a>
-                <div aria-labelledby="community" class="dropdown-menu"><a href="/#/about" class="dropdown-item">About Us</a><a href="/#/signup" class="dropdown-item">Signup</a><a href="" class="dropdown-item">Explore</a><a href="" class="dropdown-item">Discuss</a><a href="" class="dropdown-item">Vote</a><a href="" class="dropdown-item">Community</a><a href="/#/signup" class="dropdown-item">Blog</a><a href="" class="dropdown-item">Library</a></div>
+                <div aria-labelledby="community" class="dropdown-menu"><a href="/#/about" class="dropdown-item">About Us</a><a href="/#/signup" class="dropdown-item">Signup</a><a href="/#/login" class="dropdown-item">Login</a><a href="" class="dropdown-item">Explore</a><a href="" class="dropdown-item">Discuss</a><a href="" class="dropdown-item">Vote</a><a href="" class="dropdown-item">Community</a><a href="/#/signup" class="dropdown-item">Blog</a><a href="" class="dropdown-item">Library</a></div>
               </li>
 
 
 
 
               <!-- LOGIN MODAL -->
-              <li class="nav-item dropdown"><a href="/#/login" data-toggle="modal" class="btn navbar-btn btn-outline-light mb-5 mb-lg-0"><i class="fa fa-sign-in"></i>Login</a></li>
+              <li class="nav-item dropdown"><a href="#loginModal" data-toggle="modal" class="btn navbar-btn btn-outline-light mb-5 mb-lg-0"><i class="fa fa-sign-in"></i>Login</a></li>
             </ul>
           </div>
         </div>
       </nav>
     </header>
-
+    <!-- *** LOGIN MODAL ***_________________________________________________________
+    -->
+    <div id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade">
+      <div role="document" class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 id="exampleModalLabel" class="modal-title">Customer Login</h4>
+            <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+          </div>
+          <div class="modal-body">
+            <form v-on:submit.prevent="submit()" action="https://demo.bootstrapious.com/jobs/2-0-1/customer-orders.html" method="post">
+              <div class="form-group">
+                <input id="email_modal" type="text" placeholder="email" class="form-control" v-model="email">
+              </div>
+              <div class="form-group">
+                <input id="password_modal" type="password" placeholder="password" class="form-control" v-model="password">
+              </div>
+              <p class="text-center">
+                <button type="submit" class="btn btn-outline-white-primary"><i class="fa fa-sign-in"></i> Log in</button>
+              </p>
+            </form>
+            <p class="text-center text-muted">Not registered yet?</p>
+            <p class="text-center text-muted"><a href="client-register.html"><strong>Register now</strong></a>! It is easy and done in 1 minute and gives you access to special discounts and much more!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- *** LOGIN MODAL END ***-->
     <router-view/>
 
     <footer class="footer">
@@ -116,10 +143,14 @@
 </style> -->
 
 <script>
+import axios from "axios";
 export default {
   data: function() {
     return {
-      inputWord: ""
+      inputWord: "",
+      email: "",
+      password: "",
+      errors: []
     };
   },
   methods: {
@@ -127,10 +158,29 @@ export default {
       var url = "/?search=" + this.inputWord;
       this.inputWord = "";
       this.$router.push(url);
+    },
+    submit: function() {
+      var params = {
+        email: this.email,
+        password: this.password
+      };
+      axios
+        .post("http://localhost:3000/api/sessions", params)
+        .then(response => {
+          axios.defaults.headers.common["Authorization"] =
+            "Bearer " + response.data.jwt;
+          localStorage.setItem("jwt", response.data.jwt);
+          this.$router.push("/");
+          $("#loginModal").modal("hide");
+        })
+        .catch(error => {
+          this.errors = ["Invalid email or password."];
+          this.email = "";
+          this.password = "";
+        });
     }
   }
 };
-
 
 // import CommentsModal from "./components/CommentsModal.vue";
 // import DefinitionsModal from "./components/DefinitionsModal.vue";
