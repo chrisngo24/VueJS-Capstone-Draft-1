@@ -2,7 +2,7 @@
   <div>
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-primary" data-toggle="modal" v-bind:data-target="htmlId">
-      {{ name }}
+      {{ displayName }}
     </button>
 
     <!-- Modal -->
@@ -43,6 +43,7 @@ export default {
   props: {
     wordId: Number,
     name: String,
+    displayName: String,
     word: Object
   },
   data: function() {

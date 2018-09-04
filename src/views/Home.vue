@@ -4,7 +4,7 @@
     <section class="job-form-section job-form-section--image">
       <div class="container">
         <div class="row">
-          <div class="col-lg-8 mx-auto">
+          <div class="col-lg-10 mx-auto">
             <div class="job-form-box">
               <h2 class="heading">Find a <span class="accent">word</span> or <span class="accent">phrase</span>.</h2>
               <form  v-on:submit.prevent="searchEntry()" id="job-main-form" class="job-main-form">
@@ -12,7 +12,7 @@
                   <div class="row align-items-center">
                     <div class="col-md-10">
                       <div class="form-group">
-                        <label for="profession">Convey</label>
+                        <label for="profession">If no text here, search button is mis-aligned -------------------------------------------------></label>
                         <input type="text" id="profession" name="profession" placeholder="Type search here" class="form-control" v-model="search">
                       </div>
                     </div>
@@ -34,10 +34,12 @@
     <section lass="bg-light-gray">
       <div class="container">
         <div class="row">
-          <div id="blog-post" class="col-lg-10 mx-auto">
+          <div id="blog-post" class="col-lg-9 mx-auto">
             <div id="post-content">
-              <h2>Established Definitions for "{{ search }}"</h2>
-              <h6>[Officially sourced from the Wordnik Dictionary]</h6>
+              <h5><i>Search Results for "{{ search }}"</i></h5>
+
+              <h2><mark>Established Dictionary</mark></h2>
+              <h6><mark>[Source: the Wordnik Dictionary]</mark></h6>
             
               <ol>
                 <li v-for="wordnikWord in trimWords(wordnikWords)">
@@ -49,16 +51,17 @@
             <hr>
 
             <section>
-              <h2>Convey Definitions for "{{ search }}"</h2>
-              <h6>[Created by Convey users]</h6>
-                <p v-if="words.length === 0">The word you are looking for does not yet exist in the Convey library. If you can define it, consider adding it to the library.</p>
+              <h2><mark>Convey Dictionary</mark></h2>
+              <h6><mark>[By Convey users]</mark></h6>
+                <!-- <p v-if="words.length === 0">The word you are looking for does not yet exist in the Convey library. If you can define it, consider adding it to the library.</p> -->
+                <p>{{ noWordsFoundMessage }}</p>
 
                   <ol>
                     <li v-for="word in words">
-                      <p class="word"><h6>{{ word.word }}</h6></p>
-                      <p class="definition">Definition: {{ word.definition }}</p>
-                      <p class="example">Example: {{ word.example }}</p>
-                      <p class="user-name">Conveyed By: <a href="#">{{ word.user_id }}</a></p>
+                      <p>{{ word.word }}</p>
+                      <p>Definition: {{ word.definition }}</p>
+                      <p>Example: {{ word.example }}</p>
+                      <p>Conveyed By: <a href="#">{{ word.user_id }}</a></p>
                       
                       <p class="tags">Tags:
                           <span v-for="tag in word.tags">
@@ -67,7 +70,7 @@
 
                       <commentsModal v-bind:wordId="word.id" name="Comments" :word="word"></commentsModal>
                      
-                      <definitionsModal v-bind:wordId="word.id" name="Redefine It" :word="word"></definitionsModal>
+                      <definitionsModal v-bind:wordId="word.id" name="Redefine" displayName="Redefine that thing" :word="word"></definitionsModal>
 
                       <h4>DEFINITIONS BY OTHER CONVEY USERS</h4>
                       <p>
@@ -254,6 +257,7 @@
 </style>
 
 <script>
+import Vue from "vue";
 import CommentsModal from "../components/CommentsModal.vue";
 import DefinitionsModal from "../components/DefinitionsModal.vue";
 var axios = require("axios");
@@ -264,6 +268,7 @@ export default {
       words: [],
       wordnikWords: [],
       search: "",
+      noWordsFoundMessage: "",
       i: 0
     };
   },
@@ -288,7 +293,14 @@ export default {
         function(response) {
           console.table(response.data);
           this.words = response.data.custom_words;
+
+          if (this.words.length === 0) {
+            this.noWordsFoundMessage = "The word you are looking for does not yet exist in the Convey library. If you can define it, consider adding it to the library.";
+          } else {
+            this.noWordsFoundMessage = "";
+          }
           console.log("CONVEY WORDS", this.words);
+          this.search = "";
         }.bind(this)
       );
       axios.get("http://localhost:3000/api/wordnik", { params: params }).then(
@@ -296,6 +308,11 @@ export default {
           // The response.data is an array of hashes
           console.log("WORDNIK WORDS", response.data);
           this.wordnikWords = response.data;
+
+          Vue.nextTick(function() {
+
+            document.querySelector("#blog-post").scrollIntoView({ block: 'start', inline: 'nearest', behavior: 'smooth' });
+          });
         }.bind(this)
       );
 

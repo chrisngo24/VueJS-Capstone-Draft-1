@@ -2,14 +2,14 @@
   <div id="app">
     <header class="header">
       <nav class="navbar navbar-expand-lg">
-        <div class="container"><a href="index.html" class="navbar-brand"><img src="images/conveyNewWhiteBrdr.png" alt="logo" height="65" width="210" class="d-none d-lg-block"><img src="images/conveyNewWhiteBrdr.png" alt="logo" height="65" width="210" class="d-block d-lg-none"><span class="sr-only">Go to homepage</span></a>
+        <div class="container"><a href="/#/" class="navbar-brand"><img src="images/conveyNewWhiteBrdr.png" alt="logo" height="65" width="210" class="d-none d-lg-block"><img src="images/conveyNewWhiteBrdr.png" alt="logo" height="65" width="210" class="d-block d-lg-none"><span class="sr-only">Go to homepage</span></a>
 
           <div id="navbarSupportedContent" class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto">
 
               <li class="nav-item">
                 <form v-on:submit.prevent="searchWord()" class="form-inline my-2 my-lg-0">
-                  <input v-model="inputWord" class="form-control mr-sm-2" type="search" placeholder="Type search here" aria-label="Search a word">
+                  <input v-model="inputWord" class="form-control mr-sm-2" type="search" placeholder="Center me, widen me, and put me under the logo" aria-label="Search a word">
                   <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
                 </form>
               </li>
@@ -25,7 +25,7 @@
 
 
               <!-- LOGIN MODAL -->
-              <li class="nav-item dropdown"><a href="/#/login" data-toggle="modal" class="btn navbar-btn btn-outline-light mb-5 mb-lg-0"> <i class="fa fa-sign-in"></i>Login</a></li>
+              <li class="nav-item dropdown"><a href="/#/login" data-toggle="modal" class="btn navbar-btn btn-outline-light mb-5 mb-lg-0"><i class="fa fa-sign-in"></i>Login</a></li>
             </ul>
           </div>
         </div>
