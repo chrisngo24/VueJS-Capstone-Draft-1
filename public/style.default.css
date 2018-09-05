@@ -3215,7 +3215,33 @@ select.form-control-lg:not([size]):not([multiple]) {
 
 
 /* my styles */
-
-.my-search {
-  min-width: 200px;
+#my-search {
+  min-width: 380px;
+  border-radius: 18px;
 }
+
+#my-dropdown-menu {
+  background-color: rgb(45,125,148);
+}
+
+#my-dropdown-menu > a {
+  color: rgb(253,215,106);
+}
+
+#my-login-btn {
+  color: rgb(253,215,106);
+}
+
+.my-nav-searchbtn {
+  color: rgb(248, 245, 242);
+  background-color: rgb(45,125,148);
+  border-color: rgb(248, 245, 242) !important;
+  border-radius: 18px
+}
+
+.my-nav-searchbtn:hover {
+  color: rgb(45,125,148);
+  background-color: rgb(253,215,106);
+}
+
+

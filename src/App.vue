@@ -9,8 +9,8 @@
 
               <li class="nav-item">
                 <form v-on:submit.prevent="searchWord()" class="form-inline my-2 my-lg-0">
-                  <input v-model="inputWord" class="form-control mr-sm-2" type="search" placeholder="Center me, widen me, and put me under the logo" aria-label="Search a word" class="my-search">
-                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
+                  <input v-model="inputWord" class="form-control mr-sm-2" id="my-search" type="search" placeholder="Center me, widen me, and put me under the logo" aria-label="Search a word">
+                  <button class="btn btn-outline-success my-2 my-sm-0 my-nav-searchbtn" type="submit"><i class="fa fa-search"></i></button>
                 </form>
               </li>
 
@@ -18,14 +18,14 @@
 
               <!-- DROPDOWN MENU -->
               <li class="nav-item dropdown"><a id="community" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Menu</a>
-                <div aria-labelledby="community" class="dropdown-menu"><a href="/#/about" class="dropdown-item">About Us</a><a href="/#/signup" class="dropdown-item">Signup</a><a href="/#/login" class="dropdown-item">Login</a><a href="" class="dropdown-item">Explore</a><a href="" class="dropdown-item">Discuss</a><a href="" class="dropdown-item">Vote</a><a href="" class="dropdown-item">Community</a><a href="/#/signup" class="dropdown-item">Blog</a><a href="" class="dropdown-item">Library</a></div>
+                <div aria-labelledby="community" class="dropdown-menu" id="my-dropdown-menu"><a href="/#/about" class="dropdown-item">About Us</a><a href="/#/signup" class="dropdown-item">Signup</a><a href="/#/login" class="dropdown-item">Login</a><a href="" class="dropdown-item">Explore</a><a href="" class="dropdown-item">Discuss</a><a href="" class="dropdown-item">Vote</a><a href="" class="dropdown-item">Community</a><a href="/#/signup" class="dropdown-item">Blog</a><a href="" class="dropdown-item">Library</a></div>
               </li>
 
 
 
 
               <!-- LOGIN MODAL -->
-              <li class="nav-item dropdown"><a href="#loginModal" data-toggle="modal" class="btn navbar-btn btn-outline-light mb-5 mb-lg-0"><i class="fa fa-sign-in"></i>Login</a></li>
+              <li class="nav-item dropdown" id="my-login-btn"><a href="#loginModal" data-toggle="modal" class="btn navbar-btn btn-outline-light mb-5 mb-lg-0" id="my-login-btn"><i class="fa fa-sign-in"></i>Login</a></li>
             </ul>
           </div>
         </div>

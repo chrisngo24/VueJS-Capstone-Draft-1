@@ -60,7 +60,7 @@
                       <p>{{ word.word }}</p>
                       <p>Definition: {{ word.definition }}</p>
                       <p>Example: {{ word.example }}</p>
-                      <p>Conveyed By: <a href="#">{{ word.user_id }}</a></p>
+                      <p>Conveyed By: <a href="#">{{ word.user.first_name + " " + word.last_name }}</a></p>
                       
                       <p class="tags">Tags:
                           <span v-for="tag in word.tags">
@@ -78,7 +78,7 @@
                             <p><a href="#">{{ word.word }}</a></p>
                             <p>Definition: {{ definition.definition }}</p>
                             <p>Example: {{ definition.example }}</p>
-                            <p>Conveyed By: <a href="#">{{ definition.user_id }}</a></p>
+                            <p>Conveyed By: <a href="#">{{ definition.user.first_name + " " + definition.user.last_name }}</a></p>
                           </li>
                         </ol>
                       </p>
