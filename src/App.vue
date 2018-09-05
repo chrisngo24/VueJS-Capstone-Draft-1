@@ -2,14 +2,15 @@
   <div id="app">
     <header class="header">
       <nav class="navbar navbar-expand-lg">
-        <div class="container"><a href="/#/" class="navbar-brand"><img src="images/CONVEY/logo-blue-wht-serif.png" alt="logo" height="100" width="240" class="d-none d-lg-block"><img src="images/CONVEY/logo-blue-wht-serif.png" alt="logo" height="100" width="240" class="d-block d-lg-none"><span class="sr-only">Go to homepage</span></a>
+        <div class="container"><a href="/#/" class="navbar-brand"><img src="images/CONVEY/logo-sans-white-blue-slash-thick.png" alt="logo" height="75" width="240" class="d-none d-lg-block"><img src="images/CONVEY/logo-sans-white-blue-slash-thick.png" alt="logo" height="75" width="240" class="d-block d-lg-none"><span class="sr-only">Go to homepage</span></a>
 
           <div id="navbarSupportedContent" class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto">
 
+              <!-- NAVBAR SEARCHBAR -->
               <li class="nav-item">
                 <form v-on:submit.prevent="searchWord()" class="form-inline my-2 my-lg-0">
-                  <input v-model="inputWord" class="form-control mr-sm-2" id="my-search" type="search" placeholder="Center me, widen me, and put me under the logo" aria-label="Search a word">
+                  <input v-model="inputWord" class="form-control mr-sm-2" id="my-search" type="search" placeholder="Type search here" aria-label="Search a word">
                   <button class="btn btn-outline-success my-2 my-sm-0 my-nav-searchbtn" type="submit"><i class="fa fa-search"></i></button>
                 </form>
               </li>
@@ -68,9 +69,9 @@
             <div class="col-lg-4 col-md-12 mb-5">
               <h4 class="h5">PAGES</h4>
               <ul class="list-unstyled">
-                <p><a href="/#/">Home</a></p>
-                <p><a href="/#/about">About</a></p>
-                <p><a href="/#/createWords">Create</a></p>
+                <p><a href="/#/" class="my-footer-links">Home</a></p>
+                <p><a href="/#/about" class="my-footer-links">About</a></p>
+                <p><a href="/#/createWords" class="my-footer-links">Create</a></p>
               </ul>
             </div>
             <div class="col-lg-4 col-md-6 mb-5">
@@ -88,13 +89,15 @@
                 <p><a href="http://anyonecanlearntocode.com/" target="_blank">Actualize Coding Bootcamp</a></p>
             </div>
           </div>
+          <a href="/#/" <img src="images/CONVEY/logo-sans-yellow-black-slash-thick.png" alt="logo" height="100" width="240" class="d-none d-lg-block"><img src="images/CONVEY/logo-sans-yellow-black-slash-thick.png" alt="logo" height="100" width="240" class="d-block d-lg-none"></a>
         </div>
       </div>
       <div class="footer__copyright">
         <div class="container">
           <div class="row">
             <div class="col-md-6 text-md-left text-center">
-              <p>&copy;Capstone 2018</p>
+              <p>&copy;CONVEY</p>
+              <p>Capstone 2018</p>
             </div>
             <div class="col-md-6 text-md-right text-center">
               <p class="credit">Made in Chicago</p>

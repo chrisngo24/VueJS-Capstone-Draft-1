@@ -3244,4 +3244,25 @@ select.form-control-lg:not([size]):not([multiple]) {
   background-color: rgb(253,215,106);
 }
 
+.my-footer-links:hover {
+  font-color: rgb(253,215,106);
+}
+
+#my-main-search-btn {
+  color: rgb(45,125,148);
+  background-color: rgb(248, 245, 242);
+  border-color: rgb(45,125,148) !important;
+  border-width: 2px;
+  border-radius: 18px;
+  width: 70px;
+}
+
+#my-main-search-form {
+  color: rgb(45,125,148);
+  background-color: white;
+  border-color: rgb(45,125,148) !important;
+  border-width: 2px;
+  border-radius: 18px;
+  width: 750px;
+}
 

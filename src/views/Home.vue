@@ -12,13 +12,15 @@
                   <div class="row align-items-center">
                     <div class="col-md-10">
                       <div class="form-group">
-                        <label for="profession">If no text here, search button is mis-aligned -------------------------------------------------></label>
-                        <input type="text" id="profession" name="profession" placeholder="Type search here" class="form-control" v-model="search">
+                        <label for="profession"></label>
+                        <input type="text" id="my-main-search-form" name="profession" placeholder="Type search here" class="form-control" v-model="search">
                       </div>
                     </div>
 
                     <div class="col-md-2">
-                      <button class="btn btn-outline-white-primary job-main-form__button" type="submit"><i class="fa fa-search"></i></button>
+                      <div class="form-group">
+                        <button class="btn btn-outline-white-primary job-main-form__button" id="my-main-search-btn" type="submit"><i class="fa fa-search"></i></button>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -38,7 +40,7 @@
               <h5><i>Search Results for "{{ search }}"</i></h5>
 
               <h2><mark>Established Dictionary</mark></h2>
-              <h6><mark>[Source: the Wordnik Dictionary]</mark></h6>
+              <h6><mark>Provided the Wordnik Dictionary</mark></h6>
             
               <ol>
                 <li v-for="wordnikWord in trimWords(wordnikWords)">
@@ -51,7 +53,7 @@
 
             <section>
               <h2><mark>Convey Dictionary</mark></h2>
-              <h6><mark>[By Convey users]</mark></h6>
+              <h6><mark>By Convey users</mark></h6>
                 <!-- <p v-if="words.length === 0">The word you are looking for does not yet exist in the Convey library. If you can define it, consider adding it to the library.</p> -->
                 <p>{{ noWordsFoundMessage }}</p>
 
@@ -59,7 +61,7 @@
                     <li v-for="word in words">
                       <p>{{ word.word }}</p>
                       <p>Definition: {{ word.definition }}</p>
-                      <p>Example: {{ word.example }}</p>
+                      <p>Example: "{{ word.example }}"</p>
                       <p>Conveyed By: <a href="#">{{ word.user.first_name + " " + word.last_name }}</a></p>
                       
                       <p class="tags">Tags:
@@ -77,7 +79,7 @@
                           <li v-for="definition in word.definitions">
                             <p><a href="#">{{ word.word }}</a></p>
                             <p>Definition: {{ definition.definition }}</p>
-                            <p>Example: {{ definition.example }}</p>
+                            <p>Example: "{{ definition.example }}"</p>
                             <p>Conveyed By: <a href="#">{{ definition.user.first_name + " " + definition.user.last_name }}</a></p>
                           </li>
                         </ol>
