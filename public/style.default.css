@@ -11,6 +11,7 @@ header {
 }
 
 section {
+  background-color: rgb(248,245,242);
     position: relative;
     padding-top: 90px;
     padding-bottom: 90px
@@ -257,7 +258,7 @@ strong {
 }
 
 .bootstrap-select .dropdown-toggle:focus {
-    border-color: #ff7473;
+    border-color: #0eaaac;
     outline: 0 !important
 }
 
@@ -298,7 +299,7 @@ strong {
 }
 
 .bootstrap-select .dropdown-menu a:hover {
-    background: #ff7473;
+    background: rgb(253,215,106);
     color: #fff
 }
 
@@ -345,7 +346,7 @@ strong {
 .navbar {
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    background: #746EA9;
+    background: rgb(45,125,148);
     padding-top: 0 !important;
     padding-bottom: 0 !important
 }
@@ -362,8 +363,8 @@ strong {
 }
 
 .navbar ul.navbar-nav>li>a:not(.navbar-btn):hover {
-    border-top-color: #ff7473;
-    color: #ff7473
+    border-top-color: Rgb(253,215,106);
+    color: rgb(253,215,106)
 }
 
 @media (min-width: 992px) {
@@ -375,14 +376,14 @@ strong {
     }
 
     .navbar ul.navbar-nav>li>a:not(.navbar-btn):hover {
-        border-top-color: #ff7473;
-        color: #ff7473
+        border-top-color: rgb(253,215,106);
+        color: rgb(253,215,106)
     }
 
     .navbar ul.navbar-nav>li.active>a,.navbar ul.navbar-nav>li.show>a {
         text-decoration: none !important;
-        border-top-color: #ff7473;
-        color: #ff7473
+        border-top-color: Rgb(45,125,148);
+        color: Rgb(248, 245, 242)
     }
 
     .navbar ul.navbar-nav>li>a.navbar-btn {
@@ -426,7 +427,7 @@ ul.dropdown-menu li a:hover {
 }
 
 #login-modal a {
-    color: #ff7473
+    color: #0eaaac
 }
 
 #login-modal p {
@@ -490,7 +491,7 @@ ul.dropdown-menu li a:hover {
 }
 
 .dropdown-menu .dropdown-item:focus,.dropdown-menu .dropdown-item:active {
-    background: #f8f9fa !important;
+    background: black !important;
     color: #333
 }
 
@@ -513,8 +514,8 @@ ul.dropdown-menu li a:hover {
 }
 
 .footer__block {
-    background: #41A6CA;
-    padding: 80px 0
+    background: black;
+    padding: 60px 0
 }
 
 .footer__block h4 {
@@ -604,7 +605,7 @@ ul.dropdown-menu li a:hover {
 }
 
 .footer__copyright {
-    background: #34314c;
+    background: rgb(89, 91, 104);
     color: #ccc;
     padding: 20px 0;
     font-size: .7875rem;
@@ -1361,7 +1362,7 @@ ul.dropdown-menu li a:hover {
 
 .job-form-section {
     padding: 80px 0;
-    background: #fafafa
+    background-color: rgb(89, 91, 104)
 }
 
 .job-form-section .job-main-form {
@@ -1383,8 +1384,8 @@ ul.dropdown-menu li a:hover {
 }
 
 .job-form-section.job-form-section--image {
-    /*background: center center url("/images/convey.png") no-repeat;*/
-    background-color: white;
+    /*background: center center url("/images/blk-wht-people-dark.png") no-repeat;*/
+    background-color: rgb(248,245,242);
     background-size: cover;
     padding-top: 10px;
     padding-bottom: 10px
@@ -1397,7 +1398,7 @@ ul.dropdown-menu li a:hover {
 }
 
 .job-form-box {
-    background-color: rgba(255,255,255,0.8);
+    background-color: rgb(248, 245, 242);
     padding: 20px;
     margin-top: 30px;
     margin-bottom: 20px
@@ -2605,8 +2606,8 @@ h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.box-simple h3,.box-image .name h3,.box-image-
     font-family: "Montserrat",Helvetica,Arial,sans-serif;
     font-weight: 700;
     line-height: 1.2;
-    color: #555;
-    text-transform: uppercase;
+    color: black;
+    /*text-transform: uppercase;*/
     letter-spacing: 0.1em
 }
 
@@ -3210,4 +3211,11 @@ select.form-control-lg:not([size]):not([multiple]) {
 .was-validated .custom-file-input:invalid:focus,.custom-file-input.is-invalid:focus {
     -webkit-box-shadow: 0 0 0 0.2rem rgba(220,53,69,0.25);
     box-shadow: 0 0 0 0.2rem rgba(220,53,69,0.25)
+}
+
+
+/* my styles */
+
+.my-search {
+  min-width: 200px;
 }

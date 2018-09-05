@@ -6,7 +6,7 @@
         <div class="row">
           <div class="col-lg-10 mx-auto">
             <div class="job-form-box">
-              <h2 class="heading">Find a <span class="accent">word</span> or <span class="accent">phrase</span>.</h2>
+              <h2 class="heading">Inform the conversation.</h2>
               <form  v-on:submit.prevent="searchEntry()" id="job-main-form" class="job-main-form">
                 <div class="controls">
                   <div class="row align-items-center">
@@ -30,7 +30,7 @@
     </section>
 
     <!-- SEARCH RESULTS DISPLAY -->
-    <section lass="bg-light-gray">
+    <section class="bg-light-gray">
       <div class="container">
         <div class="row">
           <div id="blog-post" class="col-lg-9 mx-auto">
