@@ -2,7 +2,7 @@
   <div id="app">
     <header class="header">
       <nav class="navbar navbar-expand-lg">
-        <div class="container"><a href="/#/" class="navbar-brand"><img src="images/CONVEY/logo-sans-white-blue-slash-thick.png" alt="logo" height="75" width="240" class="d-none d-lg-block"><img src="images/CONVEY/logo-sans-white-blue-slash-thick.png" alt="logo" height="75" width="240" class="d-block d-lg-none"><span class="sr-only">Go to homepage</span></a>
+        <div class="container"><a href="/" class="navbar-brand"><img src="images/CONVEY/logo-sans-white-blue-slash-thick.png" alt="logo" height="75" width="240" class="d-none d-lg-block"><img src="images/CONVEY/logo-sans-white-blue-slash-thick.png" alt="logo" height="75" width="240" class="d-block d-lg-none"><span class="sr-only">Go to homepage</span></a>
 
           <div id="navbarSupportedContent" class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto">
@@ -69,7 +69,7 @@
             <div class="col-lg-4 col-md-12 mb-5">
               <h4 class="h5">PAGES</h4>
               <ul class="list-unstyled">
-                <p><a href="/#/" class="my-footer-links">Home</a></p>
+                <p><a href="/" class="my-footer-links">Home</a></p>
                 <p><a href="/#/about" class="my-footer-links">About</a></p>
                 <p><a href="/#/createWords" class="my-footer-links">Create</a></p>
               </ul>

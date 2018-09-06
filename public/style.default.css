@@ -67,8 +67,8 @@ section.section-divider .btn {
     display: block;
     width: 100px;
     height: 2px;
-    margin: 20px auto 20px;
-    background: #ff7473
+    margin: 10px auto 10px;
+    background: rgb(45, 125, 148);
 }
 
 .img-responsive {
@@ -1400,7 +1400,7 @@ ul.dropdown-menu li a:hover {
 .job-form-box {
     background-color: rgb(248, 245, 242);
     padding: 20px;
-    margin-top: 30px;
+    margin-top: 20px;
     margin-bottom: 20px
 }
 
@@ -3248,10 +3248,43 @@ select.form-control-lg:not([size]):not([multiple]) {
   font-color: rgb(253,215,106);
 }
 
+.my-results-display {
+  background-color: rgb(248, 245, 242)
+  padding-top: 40px;
+}
+
+.wordnik-established-dictionary {
+  color: rgb(45, 125, 148);
+}
+
+.provided-by-wordnik {
+  color: #E3A92A;
+}
+
+.convey-dictionary {
+  color: rgb(45, 125, 148);
+}
+
+.source-convey-users {
+  color: #E3A92A;
+}
+/*.input-required-warning > h5 {
+  font-color: red;
+}*/
+
 #my-main-search-btn {
   color: rgb(45,125,148);
   background-color: rgb(248, 245, 242);
   border-color: rgb(45,125,148) !important;
+  border-width: 2px;
+  border-radius: 18px;
+  width: 70px;
+}
+
+#my-main-search-btn:hover {
+  color: rgb(253, 215, 106);
+  background-color: rgb(45, 125, 148);
+  border-color: rgb(253, 215, 106) !important;
   border-width: 2px;
   border-radius: 18px;
   width: 70px;

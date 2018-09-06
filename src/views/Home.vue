@@ -6,7 +6,7 @@
         <div class="row">
           <div class="col-lg-10 mx-auto">
             <div class="job-form-box">
-              <h2 class="heading">Inform the conversation.</h2>
+                <h2 class="heading">Inform the conversation.</h2>
               <form  v-on:submit.prevent="searchEntry()" id="job-main-form" class="job-main-form">
                 <div class="controls">
                   <div class="row align-items-center">
@@ -32,15 +32,15 @@
     </section>
 
     <!-- SEARCH RESULTS DISPLAY -->
-    <section class="bg-light-gray">
+    <section class="my-results-display">
       <div class="container">
         <div class="row">
           <div id="blog-post" class="col-lg-9 mx-auto">
             <div id="post-content">
               <h5><i>Search Results for "{{ search }}"</i></h5>
 
-              <h2><mark>Established Dictionary</mark></h2>
-              <h6><mark>Provided the Wordnik Dictionary</mark></h6>
+              <h2 class="wordnik-established-dictionary">The Established Dictionary</h2>
+              <h6 class="provided-by-wordnik">Provided the Wordnik Dictionary</h6>
             
               <ol>
                 <li v-for="wordnikWord in trimWords(wordnikWords)">
@@ -50,10 +50,12 @@
               </ol>
             
             <hr>
+            <hr>
+            <hr>
 
             <section>
-              <h2><mark>Convey Dictionary</mark></h2>
-              <h6><mark>By Convey users</mark></h6>
+              <h2 class="convey-dictionary">The CONVEY Dictionary</h2>
+              <h6 class="source-convey-users">By Convey Users</h6>
                 <!-- <p v-if="words.length === 0">The word you are looking for does not yet exist in the Convey library. If you can define it, consider adding it to the library.</p> -->
                 <p>{{ noWordsFoundMessage }}</p>
 
@@ -72,8 +74,11 @@
                       <commentsModal v-bind:wordId="word.id" name="Comments" :word="word"></commentsModal>
                      
                       <definitionsModal v-bind:wordId="word.id" name="Redefine" displayName="Redefine that thing" :word="word"></definitionsModal>
+                      
+                      <hr>
+                      <hr>
 
-                      <h4>DEFINITIONS BY OTHER CONVEY USERS</h4>
+                      <h4 class="convey-dictionary">DEFINITIONS BY OTHER CONVEYERS</h4>
                       <p>
                         <ol>
                           <li v-for="definition in word.definitions">
@@ -201,7 +206,7 @@ export default {
     commentsModal: CommentsModal,
     definitionsModal: DefinitionsModal
   },
-  created: function() {
+  create: function() {
     console.log("Finding your word.", this.$route.query);
     if (this.$route.query.search) {
       this.search = this.$route.query.search;
