@@ -206,7 +206,8 @@ export default {
     commentsModal: CommentsModal,
     definitionsModal: DefinitionsModal
   },
-  create: function() {
+  mounted: function() {
+    console.log("mounted", this.$route.fullPath);
     console.log("Finding your word.", this.$route.query);
     if (this.$route.query.search) {
       this.search = this.$route.query.search;
