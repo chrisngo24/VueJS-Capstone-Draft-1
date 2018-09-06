@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" v-bind:data-target="htmlId">
+    <button type="button" class="my-nav-searchbtn" data-toggle="modal" v-bind:data-target="htmlId">
       {{ displayName }}
     </button>
 
@@ -15,19 +15,15 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body">
-            body: {{ modalId }}
-          </div>
+<!--           <div class="modal-body">
+            Total Definitions: {{ modalId }}
+          </div> -->
          
           <div>
             <form>
-              <input type="text" v-model="word.newDefinition" placeholder="enter a new definition">
-              <button class="search-button" v-on:click="createDefinition(word)" type="submit">Submit</button>
+              <textarea type="text" v-model="word.newDefinition" placeholder="enter a new definition"></textarea>
+              <button class="my-nav-searchbtn" v-on:click="createDefinition(word)" type="submit">Submit</button>
             </form>
-          </div>
-
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           </div>
         </div>
       </div>

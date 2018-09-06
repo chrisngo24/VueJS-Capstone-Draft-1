@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" v-bind:data-target="htmlId">
+    <button type="button" class="my-nav-searchbtn" data-toggle="modal" v-bind:data-target="htmlId">
       {{ name }}
     </button>
 
@@ -17,25 +17,22 @@
           </div>
 
           <div class="modal-body">
-            body: {{ modalId }}
+            Total {{ modalId }}
             <div>
 
             <!-- New Comment Text Input Form -->
             <form>
-              <input type="text" v-model="word.comment" placeholder="enter a comment">
-              <button class="search-button" v-on:click="createComment(word)" type="submit">Submit</button>
+              <textarea type="text" v-model="word.comment" placeholder="enter a comment"></textarea> 
+              <button class="my-nav-searchbtn" v-on:click="createComment(word)" type="submit">Submit</button>
             </form>
             </div>
 
-            <ul>
+            <ol>
               <li v-for="comment in word.comments">
                 <p>{{ comment.text }}</p>
               </li>
-            </ul>
+            </ol>
             </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           </div>
         </div>
       </div>

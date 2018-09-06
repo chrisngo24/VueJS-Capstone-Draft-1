@@ -58,7 +58,7 @@
               <div class="row">
                 <div class="col-lg-12 text-center">
                   <router-link :to="{name: 'home'}">
-                    <button v-on:click="createNewWord()" type="submit" class="btn btn-outline-white-primary"> <i class="fa fa-magic"></i> Submit to CONVEY Dictionary</button>
+                    <button v-on:click="createNewWord()" type="submit" id="my-main-search-btn"> <i class="fa fa-magic"></i> Submit to CONVEY Dictionary</button>
                   </router-link>
                   <p class="help-block text-small">Please review your entire post for accuracy, grammar, and punctuation before submitting.</p>
                 </div>
